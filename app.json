@@ -5,8 +5,8 @@
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarBackgroundColor": "#1EDFDF",
+    "navigationBarTitleText": "热映电影",
+    "navigationBarTextStyle":"#fff"
   }
 }

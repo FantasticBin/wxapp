@@ -10,38 +10,40 @@ Page({
     // canIUse: wx.canIUse('button.open-type.getUserInfo'),
     imgSrc: [],
     videos:[],
+    titleButtons:[
+      {
+        name:'正在热映',
+        value:'in_theaters'
+      },
+      {
+        name:'即将上映',
+        value:'coming_soon'
+      },
+      {
+        name:'口碑榜',
+        value:'weekly'
+      },
+      {
+        name:'北美票房榜',
+        value:'us_box'
+      },
+      {
+        name:'新片榜',
+        value:'new_movies'
+      },
+      {
+        name:'Top250',
+        value:'top250'
+      },
+    ]
   },
   //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
+  reload: function (event) {
+    let title = event.currentTarget.dataset.value;
+    this.getData(title)
   },
   onLoad: function () {
-
-    let data = wx.getStorageSync('videos');
-    if(data){
-      console.log('wx.getStorageSync')
-      console.log(data)
-      this.setData({
-        videos: data
-      })
-    }else{
-      console.log('wx.request')
-      wx.request({
-        url: 'https://api.douban.com/v2/movie/in_theaters?count=10', //仅为示例，并非真实的接口地址
-        header: {
-          'content-type': 'application/text' // 默认值
-        },
-        success: (res) => {
-          console.log(res)
-          this.setData({
-            videos: res.data.subjects
-          })
-          wx.setStorageSync('videos', this.data.videos)
-        }
-      })
-    }
+    this.getData('in_theaters')
   },
   getUserInfo: function(e) {
     console.log(e)
@@ -65,6 +67,39 @@ Page({
         })
       }
     });
+  },
+
+  getData(title){
+    let data = wx.getStorageSync(`videos_${title}`);
+    if (data) {
+      console.log('wx.getStorageSync')
+      console.log(data)
+      this.setData({
+        videos: data
+      })
+    } else {
+      this.setData({
+        videos: []
+      })
+      wx.showLoading({
+        title: '正在加载',
+      })
+      console.log('wx.request')
+      wx.request({
+        url: `https://api.douban.com/v2/movie/${title}?count=30`, //仅为示例，并非真实的接口地址
+        header: {
+          'content-type': 'application/text' // 默认值
+        },
+        success: (res) => {
+          console.log(res)
+          this.setData({
+            videos: res.data.subjects
+          })
+          wx.setStorageSync(`videos_${title}`, this.data.videos)
+          wx.hideLoading();
+        }
+      })
+    }
   }
 
 })
