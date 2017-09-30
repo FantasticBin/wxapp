@@ -1,0 +1,17 @@
+/**app.wxss**/
+
+.container {
+  /* padding: 10rpx; */
+}
+
+.clearfix:after {
+  display: block;
+  clear: both;
+  content: '';
+  visibility: none;
+  height: 0;
+}
+
+.clearfix {
+  zoom: 1;
+}
