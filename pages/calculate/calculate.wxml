@@ -1,0 +1,6 @@
+<!--index.wxml-->
+<view class="container">
+  <div class="main__body">
+    <navigator class="main__button" open-type='navigateTo' url="../add/add">add</navigator>
+  </div>
+</view>

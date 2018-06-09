@@ -1,16 +1,19 @@
 <!--index.wxml-->
 <view class="container">
-  <scroll-view class="main__title" scroll-x>
-    <div class="main__button" wx:for="{{titleButtons}}" wx:key="{{item.value}}" bindtap="reload" data-value="{{item.value}}">{{item.name}}</div>
-  </scroll-view>
-  <view class="main__body clearfix">
-    <!--通过数据绑定的方式动态获取js数据-->
-    <div class='main__item' wx:for="{{videos}}" wx:key="{{item.id}}">
+  <!-- <div class="main__title" scroll-x>
+    <div class="main__button {{currentIndex ===item.value?'main__button_active':'' }}" wx:for="{{titleButtons}}" wx:key="{{item.value}}" bindtap="reload" data-value="{{item.value}}">{{item.name}}</div>
+  </div> -->
+  <!-- <view class="main__body clearfix"> -->
+  <!--通过数据绑定的方式动态获取js数据-->
+  <!-- <div class='main__item' wx:for="{{videos}}" wx:key="{{item.id}}">
       <image class='main__img' mode="aspectFill" src="{{item.images.large}}"/>
       <p class='main__item_title'>{{item.title}}</p>
       <ul>
         <li class='main__item_type' wx:for="{{item.genres}}" wx:key="{{item}}">{{item}}</li>
       </ul>
-    </div>
-  </view>
+    </div> -->
+  <!-- </view> -->
+  <div class="main__body">
+    <navigator class="main__button" open-type='navigateTo' url="../calculate/calculate">定投计算</navigator>
+  </div>
 </view>

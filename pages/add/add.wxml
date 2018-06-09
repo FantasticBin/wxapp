@@ -1,0 +1,20 @@
+<!--index.wxml-->
+<view class="container">
+  <div class="main__body">
+    <div class="main_cell">
+      <view class="section__title">基金名称：</view>
+      <picker bindchange="bindPickerChange" value="{{selectIndex}}" range="{{selectArr}}" range-key='name'>
+        <view class="picker">
+          {{selectArr[selectIndex].name}}
+        </view>
+      </picker>
+    </div>
+    <div class="main_cell" wx:for="{{fundArr}}" wx:key="index" wx:if="{{!item.notRender}}">
+      <view class="section__title">{{item.label}}：</view>
+      <input id='{{item.prop}}' name="input" type='digit' bindinput="bindKeyInput" 
+      value='{{item.value}}' disabled='{{item.disabled}}' />
+      <span class="cell_icon" wx:if="{{item.icon}}">%</span>
+    </div>
+    <button size='middle' type="primary" bindtap="add"> 添加 </button>
+  </div>
+</view>

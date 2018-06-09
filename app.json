@@ -1,12 +1,14 @@
 {
-  "pages":[
+  "pages": [
+    "pages/add/add",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/calculate/calculate"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#1EDFDF",
-    "navigationBarTitleText": "热映电影",
-    "navigationBarTextStyle":"#fff"
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Calculator",
+    "navigationBarTextStyle": "black"
   }
 }

@@ -1,7 +1,11 @@
 /**app.wxss**/
 
+page{
+  height: 100%;
+}
 .container {
   /* padding: 10rpx; */
+  height: 100%;
 }
 
 .clearfix:after {
