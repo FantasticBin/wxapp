@@ -11,7 +11,7 @@
     </div>
     <div class="main_cell" wx:for="{{fundArr}}" wx:key="index" wx:if="{{!item.notRender}}">
       <view class="section__title">{{item.label}}：</view>
-      <input class='section__content' id='{{item.prop}}' name="input" type='digit' bindinput="bindKeyInput" value='{{item.value}}' disabled='{{item.disabled}}' />
+      <input class='section__content' id='{{item.prop}}' name="input" type='{{item.type||"digit"}}' bindinput="bindKeyInput" value='{{item.value}}' disabled='{{item.disabled}}' />
       <span class="cell_icon" wx:if="{{item.icon}}">%</span>
     </div>
     <div class="main_cell">

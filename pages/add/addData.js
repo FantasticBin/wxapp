@@ -15,6 +15,7 @@ module.exports = {
         value: 2000,
       },
       {
+        type: 'text',
         label: '起投时间',
         prop: 'startTime',
         value: '2018/4/25',
@@ -48,6 +49,7 @@ module.exports = {
         value: 1684,
       },
       {
+        type: 'text',
         label: '起投时间',
         prop: 'startTime',
         value: '2018/4/20',
@@ -86,6 +88,7 @@ module.exports = {
         value: 1000,
       },
       {
+        type: 'text',
         label: '起投时间',
         prop: 'startTime',
         value: '2017/8/16',
@@ -119,6 +122,7 @@ module.exports = {
         value: 1000,
       },
       {
+        type: 'text',
         label: '起投时间',
         prop: 'startTime',
         value: '2018/3/29',
@@ -152,6 +156,7 @@ module.exports = {
         value: 1000,
       },
       {
+        type: 'text',
         label: '起投时间',
         prop: 'startTime',
         value: '2017/11/16',
@@ -185,6 +190,7 @@ module.exports = {
         value: 1000,
       },
       {
+        type: 'text',
         label: '起投时间',
         prop: 'startTime',
         value: '2017/6/5',
@@ -218,6 +224,7 @@ module.exports = {
         value: 1000,
       },
       {
+        type: 'text',
         label: '起投时间',
         prop: 'startTime',
         value: '2018/1/17',
