@@ -4,7 +4,7 @@
     <view class="section__title">{{item.fundName}}：</view>
     <p>￥{{item.resultMoney}}</p>
   </div>
-  <div class="main_result">
+  <div class="main_result" wx:if="{{fundList}}">
     <view class="section__title">投入总额：</view>
     <p class="result_money">￥{{resultMoney}}</p>
   </div>

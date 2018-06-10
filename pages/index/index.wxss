@@ -19,7 +19,7 @@
   font-size: 30rpx;
 }
 .main__button.disabled{
-  background: #0096BB;
+  background: #71B1C2;
 }
 .button_img{
   width: 128rpx;

@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    fundList: [],
+    fundList: null,
     resultMoney: 0,
     nowDate: ''
   },
@@ -43,7 +43,7 @@ Page({
     try {
       wx.removeStorageSync(this.data.nowDate)
       this.setData({
-        fundList: [],
+        fundList: null,
         resultMoney: 0,
       })
     } catch (e) {

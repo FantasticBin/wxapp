@@ -5,20 +5,20 @@
       <image class='button_img' src='../../imgs/jijin.png'></image>
       <div>基金定投</div>
     </navigator>
-    <navigator style='padding-bottom:10rpx' class="main__button disabled" open-type='navigateTo' disable="true">
+    <div style='padding-bottom:10rpx' class="main__button disabled" open-type='navigateTo' disable="true">
       <image class='button_img' src='../../imgs/hk.png'></image>
       <div>港股手续费</div>
       <div class="button_tip">敬请期待...</div>
-    </navigator>
-    <navigator style='padding-bottom:10rpx' class="main__button disabled" open-type='navigateTo' disable="true">
+    </div>
+    <div style='padding-bottom:10rpx' class="main__button disabled" open-type='navigateTo' disable="true">
       <image class='button_img' src='../../imgs/sh.png'></image>
       <div>A股手续费</div>
       <div class="button_tip">敬请期待...</div>
-    </navigator>
-    <navigator style='padding-bottom:10rpx' class="main__button disabled" open-type='navigateTo' disable="true">
+    </div>
+    <div style='padding-bottom:10rpx' class="main__button disabled" open-type='navigateTo' disable="true">
       <image class='button_img' src='../../imgs/history.png'></image>
       <div>历史记录</div>
       <div class="button_tip">敬请期待...</div>
-    </navigator>
+    </div>
   </div>
 </view>
