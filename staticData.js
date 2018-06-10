@@ -10,10 +10,9 @@ let fund = {
   ZZHL: { name: '中证红利', value: '100032', pType: rate.PY },
   DBD500: { name: '500低波动', value: '003318', pType: rate.PE },
   JBM50: { name: '基本面50', value: '160716', pType: rate.PY },
-  JBM120: { name: '基本面120', value: '070023', pType: rate.PE },
-  ZGHL: { name: '中国互联', value: '164906', pType: rate.PE },
+  JBM120: { name: '基本面120', value: '070023', pType: rate.PE }
 }
-export default {
+module.exports = {
   RATE: rate,
   FUND: fund,
 }

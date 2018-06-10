@@ -1,66 +1,53 @@
 // pages/calculate/calculate.js
+var staticData = require("../../staticData.js");
+var utils = require("../../utils/util.js");
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    fundList: [],
+    resultMoney: 0,
+    nowDate: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-  
+  onShow: function (options) {
+    let nowDate = utils.formatTime(new Date()).split(' ')[0]
+    let data = wx.getStorageSync(nowDate)
+    if (data) {
+      let sum = 0;
+      for (let key in data) {
+        sum += parseFloat(data[key].resultMoney)
+      }
+      this.setData({
+        fundList: data,
+        resultMoney: sum,
+        nowDate: nowDate
+      })
+    }
+    this.setData({
+      nowDate: nowDate
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  clear() {
+    try {
+      wx.removeStorageSync(this.data.nowDate)
+      this.setData({
+        fundList: [],
+        resultMoney: 0,
+      })
+    } catch (e) {
+      // Do something when catch error
+    }
   }
 })

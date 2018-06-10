@@ -1,13 +1,60 @@
-.main__body {
+.main_cell {
+  position: relative;
   display: flex;
-  flex-wrap: wrap;
-  padding: 20rpx 50rpx;
+  align-items: center;
+  border-bottom: 1px solid #e3e3e3;
 }
 
-.main__button{
-  background: #6BDDFA;
+.main_result {
+  display: flex;
+  align-items: center;
+}
+.result_money{
+  color: #00CCFF;
+  font-weight: bold;
+}
+
+.section__title {
+  width: 260rpx;
+  padding-right: 50rpx;
+  padding-bottom: 25rpx;
+  padding-top: 25rpx;
+  text-align: right;
+  color: #666;
+}
+
+.main__button {
+  display: block;
+  margin: 40rpx auto;
+  height: 92rpx;
+  line-height: 92rpx;
+  background: #00CCFF !important;
   color: #fff;
+  text-align: center;
   border-radius: 10rpx;
-  padding: 30rpx;
 }
 
+.main__button2 {
+  display: block;
+  margin: 40rpx auto;
+  height: 92rpx;
+  line-height: 92rpx;
+  background: #FF6666 !important;
+  color: #fff;
+  text-align: center;
+  border-radius: 10rpx;
+}
+
+
+.flex {
+  display: block;
+  padding: 0 60rpx;
+}
+.bottom{
+  display: block;
+  font-size: 12px;
+  color:#666;
+  padding-right: 55rpx;
+  text-align: right;
+  padding-top: 20rpx;
+}

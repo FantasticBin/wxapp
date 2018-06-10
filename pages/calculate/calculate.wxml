@@ -1,6 +1,16 @@
 <!--index.wxml-->
 <view class="container">
-  <div class="main__body">
-    <navigator class="main__button" open-type='navigateTo' url="../add/add">add</navigator>
+  <div class="main_cell" wx:for="{{fundList}}" wx:key="index">
+    <view class="section__title">{{item.fundName}}：</view>
+    <p>￥{{item.resultMoney}}</p>
   </div>
+  <div class="main_result">
+    <view class="section__title">投入总额：</view>
+    <p class="result_money">￥{{resultMoney}}</p>
+  </div>
+  <div class="flex">
+    <navigator class="main__button" open-type='navigateTo' url="../add/add">添加基金</navigator>
+    <button class='main__button2' type='primary' size='middle' bindtap="clear"> 清空 </button>
+  </div>
+  <div class="bottom">{{nowDate}}</div>
 </view>

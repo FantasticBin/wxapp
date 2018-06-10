@@ -1,10 +1,11 @@
 /**app.wxss**/
 
-page{
+page {
   height: 100%;
 }
+
 .container {
-  /* padding: 10rpx; */
+  padding: 0 20rpx;
   height: 100%;
 }
 
@@ -18,4 +19,7 @@ page{
 
 .clearfix {
   zoom: 1;
+}
+.button_shadow{
+  box-shadow:0px 1px 6rpx #D9D9D9;
 }

@@ -1,13 +1,32 @@
 .main__body {
   display: flex;
   flex-wrap: wrap;
-  padding: 20rpx 50rpx;
+  justify-content: space-around;
+  padding: 200rpx 50rpx;
 }
 
 .main__button{
-  background: #6BDDFA;
+  background: #00CCFF;
   color: #fff;
   border-radius: 10rpx;
   padding: 30rpx;
+  text-align: center;
+  width: 200rpx;
+  margin-bottom: 50rpx;
+}
+.main__button div{
+  display: block;
+  font-size: 30rpx;
+}
+.main__button.disabled{
+  background: #0096BB;
+}
+.button_img{
+  width: 128rpx;
+  height: 128rpx;
+  padding: 5rpx;
+}
+.button_tip{
+  font-size: 20rpx !important;
 }
 
