@@ -3,7 +3,11 @@
   <div class="main__body">
     <navigator class="main__button" open-type='navigateTo' url="../calculate/calculate">
       <image class='button_img' src='../../imgs/jijin.png'></image>
-      <div>基金定投</div>
+      <div>定投计算</div>
+    </navigator>
+    <navigator class="main__button" open-type='navigateTo' url="../self_fund/self_fund">
+      <image class='button_img' src='../../imgs/selection.png'></image>
+      <div>自选基金</div>
     </navigator>
     <div style='padding-bottom:10rpx' class="main__button disabled" open-type='navigateTo' disable="true">
       <image class='button_img' src='../../imgs/hk.png'></image>
@@ -13,11 +17,6 @@
     <div style='padding-bottom:10rpx' class="main__button disabled" open-type='navigateTo' disable="true">
       <image class='button_img' src='../../imgs/sh.png'></image>
       <div>A股手续费</div>
-      <div class="button_tip">敬请期待...</div>
-    </div>
-    <div style='padding-bottom:10rpx' class="main__button disabled" open-type='navigateTo' disable="true">
-      <image class='button_img' src='../../imgs/history.png'></image>
-      <div>历史记录</div>
       <div class="button_tip">敬请期待...</div>
     </div>
   </div>

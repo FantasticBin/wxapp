@@ -1,18 +1,22 @@
 <!--index.wxml-->
 <view class="container">
   <div class="main__body">
-    <div class="main_cell">
+    <div class="main_cell active">
       <view class="section__title">基金名称：</view>
-      <picker bindchange="bindPickerChange" value="{{selectIndex}}" range="{{selectArr}}" range-key='name'>
-        <view class="picker">
-          {{selectArr[selectIndex].name}}
+      <picker class='selectpicker text_ellipsis' bindchange="bindPickerChange" value="{{selectIndex}}" range="{{selectArr}}" range-key='fundName'>
+        <view class="text_ellipsis">
+          {{selectArr[selectIndex].fundName}}
         </view>
       </picker>
     </div>
-    <div class="main_cell" wx:for="{{fundArr}}" wx:key="index" wx:if="{{!item.notRender}}">
+    <div class="main_cell {{item.disabled?'':'active'}}" wx:for="{{fundArr}}" wx:key="index" wx:if="{{!item.notRender}}">
       <view class="section__title">{{item.label}}：</view>
       <input class='section__content' id='{{item.prop}}' name="input" type='{{item.type||"digit"}}' bindinput="bindKeyInput" value='{{item.value}}' disabled='{{item.disabled}}' />
       <span class="cell_icon" wx:if="{{item.icon}}">%</span>
+    </div>
+    <div class="main_cell active">
+      <view class="section__title">是否递增：</view>
+      <switch checked="{{isChecked}}" color="#00CCFF" bindchange="switch2Change" />
     </div>
     <div class="main_cell">
       <view class="section__title">预计金额：</view>
@@ -26,15 +30,20 @@
       <view class="section__title">实际金额：</view>
       <p class="result_money">{{realMoney}}</p>
     </div>
-    <div class="flex">
-      <button class='main__button' size='middle' type="primary" bindtap="add" disabled="{{!resultMoney}}"> 提交 </button>
-      <button class='main__button' size='middle' type="primary" bindtap="calculate"> 计算 </button>
+    <div class="bottom">
+      注1：投入金额 = 起投金额 * (1.01)^x * (当前市盈率/起投市盈率)^y
     </div>
     <div class="bottom">
-      注：投入金额 = (1.01)^x * (当前市盈率/起投市盈率)^y
+      注2：x = 投资月数；y = 倍数；盈利收益率当前和起投分子分母调换
     </div>
     <div class="bottom">
-      注：x = 投资月数；y = 倍数；盈利收益率当前和起投分子分母调换
+      注3：是否递增--这个起始金额每年增长约12%或者每个月增长1%（大多数宽基指数的长期成长性约是 12%），配合指数的平均盈利增长。
+    </div>
+    <div class="bottom">
+      注4：倍增系数--低估更多，高估更少，放大收益
+    </div>
+    <div class="page_bottom">
+      <button class='main__button' size='middle' type="primary" bindtap="add" disabled="{{!resultMoney}}">保存</button>
     </div>
   </div>
 </view>

@@ -2,7 +2,15 @@
   position: relative;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #e3e3e3;
+}
+.main_cell.active{
+  background: #fff;
+  box-shadow: 0 0 20rpx #ddd;
+  border-radius: 30rpx;
+  margin: 0 10rpx 10rpx;
+}
+.main_cell.active .section__title{
+  width: 250rpx;
 }
 .section__title{
   width: 260rpx;
@@ -11,6 +19,7 @@
   padding-top: 25rpx;
   text-align: right;
   color: #666;
+  font-size: 35rpx;
 }
 .section__content{
   flex: 1;
@@ -22,23 +31,31 @@
   transform: translateY(-50%);
 }
 .main__button{
-  width: 300rpx;
   background: #00CCFF !important;
   color: #fff;
   text-align: center;
+  border-radius: 0;
 }
 .flex{
   display: flex;
   padding: 40rpx 0;
 }
+.main__body{
+  display: block;
+  padding-top: 20rpx;
+}
 .bottom{
   display: block;
-  font-size: 12px;
+  font-size: 11px;
   color:#666;
   padding-left: 30rpx
 }
 .result_money{
   color: #00CCFF;
   font-weight: bold;
+}
+.selectpicker{
+  flex: 1;
+  padding-right: 20rpx;
 }
 

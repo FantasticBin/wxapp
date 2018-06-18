@@ -1,55 +1,81 @@
 .main_cell {
   position: relative;
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #e3e3e3;
+  background: #fff;
+  border-radius: 10rpx;
+  margin: 30rpx;
+  padding: 20rpx;
+  box-shadow: 0 0 20rpx #ddd;
 }
 
+.title {
+  color: #333;
+}
+
+.subtitle {
+  font-size: 25rpx;
+  color: #666;
+}
+
+.subtitle .subtitle_content {
+  padding-right: 100rpx;
+}
+ .subtitle .subtitle_content:last-child {
+  padding-right: 0;
+  padding-left: 50rpx;
+} 
+.money{
+  position: absolute;
+  right: 30rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 35rpx;
+  font-weight: bold;
+}
 .main_result {
   display: flex;
   align-items: center;
 }
 .result_money{
-  color: #00CCFF;
+  color: #FF6666;
   font-weight: bold;
 }
 
 .section__title {
-  width: 260rpx;
   padding-right: 50rpx;
-  padding-bottom: 25rpx;
-  padding-top: 25rpx;
-  text-align: right;
-  color: #666;
+  color: #333;
+}
+
+.flex{
+  display: flex;
+}
+.result{
+  display: flex;
+  align-items: center;
+  background: #BFEFFF;
+  box-shadow: 0 0 10rpx #BFEFFF;
 }
 
 .main__button {
   display: block;
-  margin: 40rpx auto;
+  width: 50%;
   height: 92rpx;
   line-height: 92rpx;
   background: #00CCFF !important;
   color: #fff;
   text-align: center;
-  border-radius: 10rpx;
 }
 
 .main__button2 {
   display: block;
-  margin: 40rpx auto;
+  width: 50%;
   height: 92rpx;
   line-height: 92rpx;
   background: #FF6666 !important;
   color: #fff;
   text-align: center;
-  border-radius: 10rpx;
+  border-radius: 0;
 }
 
-
-.flex {
-  display: block;
-  padding: 0 60rpx;
-}
 .bottom{
   display: block;
   font-size: 12px;
@@ -57,4 +83,29 @@
   padding-right: 55rpx;
   text-align: right;
   padding-top: 20rpx;
+}
+.canvas{
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+.ocr_button{
+  position: fixed;
+  right: 25rpx;
+  bottom: 110rpx;
+  display: block;
+  width: 120rpx;
+  height: 120rpx;
+  background: #ff99cc !important;
+  color: #fff;
+  border-radius: 100%;
+  box-shadow: 0 0 20rpx #ddd;
+}
+.ocr_img{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 70rpx;
+  height: 70rpx;
 }

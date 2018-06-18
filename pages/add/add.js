@@ -1,5 +1,5 @@
 // pages/add/add.js
-var addData = require("./addData.js");
+var AddObj = require("./addData.js");
 var staticData = require("../../staticData.js");
 var utils = require("../../utils/util.js");
 
@@ -12,14 +12,37 @@ Page({
     submitObj: {},
     resultMoney: 0,
     realMoney: 0,
-    isOuter: true,//是否场外
-    stockCount: '',//场内数量
+    isOuter: true, //是否场外
+    stockCount: '', //场内数量
+    isChecked: false,
   },
-  onLoad: function (options) {
+  onLoad: function(options) {
+    wx.setNavigationBarTitle({
+      title: '添加定投基金'
+    })
+    let data = wx.getStorageSync(staticData.SELF_FUND_LIST)
+    if (!data) {
+      wx.showToast({
+        title: '请先添加自选基金',
+        icon: 'none',
+        duration: 2000
+      })
+      return;
+    }
+    let tempData = data;
+    let tempIndex = 0;
+    if (options.index >= 0) {
+      tempData = wx.getStorageSync(options.date);
+      tempIndex = options.index;
+    }
     this.setData({
-      fundArr: addData.fundItems['501029'],
-      selectArr: addData.fundList,
-      curFund: staticData.FUND.HLJH
+      fundArr: new AddObj(tempData[tempIndex]),
+      selectArr: data,
+      curFund: tempData[tempIndex],
+      isOuter: tempData[tempIndex].fundType == 1,
+      selectIndex: data.findIndex(item => {
+        return item.fundCode == tempData[tempIndex].fundCode
+      })
     })
   },
   bindKeyInput(e) {
@@ -35,21 +58,26 @@ Page({
     this.setData({
       fundArr: newArr,
     })
+    this.calculate();
   },
   bindPickerChange(e) {
     let item = this.data.selectArr[parseInt(e.detail.value)]
-    let isInner = addData.fundItems[item.value].some(item => {
-      return item.prop === 'curStockPrice'
-    })
     this.setData({
       selectIndex: e.detail.value,
       curFund: item,
-      fundArr: addData.fundItems[item.value],
+      fundArr: new AddObj(item),
       submitObj: {},
       resultMoney: 0,
       realMoney: 0,
-      isOuter: !isInner,
+      isOuter: item.fundType == 1,
+      isChecked: false,
     })
+  },
+  switch2Change(e) {
+    this.setData({
+      isChecked: e.detail.value
+    })
+    this.calculate();
   },
   calculate() {
     let fundItemObj = {};
@@ -57,22 +85,33 @@ Page({
       if (item.value) {
         fundItemObj[item.prop] = item.value
       } else {
-        return
+        if (!item.notRender) {
+          this.setData({
+            resultMoney: 0,
+            realMoney: 0,
+          })
+          return
+        }
       }
     }
-    let startDate = new Date(fundItemObj.startTime);
+    let startDate = new Date(fundItemObj.startDate.replace(/-/g, '/'));
     let curDate = new Date();
     let intervalMonth = (curDate.getFullYear() * 12 + curDate.getMonth()) - (startDate.getFullYear() * 12 + startDate.getMonth());
     let coefficient = Math.pow(1.01, intervalMonth);
     let pby = 0;
     // 如果是盈利收益率
-    if (fundItemObj.pType === staticData.RATE.PY) {
-      pby = Math.pow((fundItemObj.curPB / fundItemObj.startPB), fundItemObj.multiple);
+    if (fundItemObj.pType == staticData.RATE.PY) {
+      pby = Math.pow((fundItemObj.curPe / fundItemObj.startPe), fundItemObj.multiple);
     } else {
-      pby = Math.pow((fundItemObj.startPB / fundItemObj.curPB), fundItemObj.multiple);
+      pby = Math.pow((fundItemObj.startPe / fundItemObj.curPe), fundItemObj.multiple);
     }
-    // let result = (parseFloat(fundItemObj.startMoney) * coefficient * pby).toFixed(0);
-    let result = (parseFloat(fundItemObj.startMoney) * pby).toFixed(0);
+    //是否递增
+    let result = 0;
+    if (this.data.isChecked) {
+      result = (parseFloat(fundItemObj.startMoney) * coefficient * pby).toFixed(0);
+    } else {
+      result = (parseFloat(fundItemObj.startMoney) * pby).toFixed(0);
+    }
     if (!isNaN(result)) {
       let real = 0;
       if (this.data.isOuter) {
@@ -87,7 +126,7 @@ Page({
         }
         real = large + small;
       } else {
-        let count = result / fundItemObj.curStockPrice;
+        let count = result / (fundItemObj.curStockPrice || 1);
         let small = count % 100;
         let large = parseInt(count / 100) * 100;
         if (small > 50) {
@@ -95,18 +134,18 @@ Page({
         } else {
           small = 0;
         }
-        real = parseFloat(fundItemObj.curStockPrice) * (large+small)
+        real = parseFloat(fundItemObj.curStockPrice) * (large + small)
         this.setData({
           stockCount: large + small
-      })
+        })
       }
       fundItemObj.resultMoney = real
-      fundItemObj.curTime = new Date().getTime().toString();
-      fundItemObj.fundName = this.data.curFund.name;
-      fundItemObj.fundCode = this.data.curFund.value;
+      fundItemObj.curTime = utils.formatTime(new Date()).split(' ')[0].replace(/\//g, '-');
+      fundItemObj.fundName = this.data.curFund.fundName;
+      fundItemObj.fundCode = this.data.curFund.fundCode;
       this.setData({
         resultMoney: result,
-        realMoney: real,
+        realMoney: parseFloat(real.toFixed(2)),
         submitObj: fundItemObj,
       })
     }
@@ -116,20 +155,51 @@ Page({
       let fundItemObj = this.data.submitObj;
       let nowDate = utils.formatTime(new Date()).split(' ')[0]
       let data = wx.getStorageSync(nowDate)
-      if (data instanceof Object) {
-        data[fundItemObj.fundCode] = fundItemObj
-      } else {
-        data = {
-          [fundItemObj.fundCode]: fundItemObj
+      if (data && data instanceof Array) {
+        if (data.every(item => item.fundCode != fundItemObj.fundCode)) {
+          data.push(fundItemObj)
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: '基金已存在,是否替换？',
+            confirmColor: '#00CCFF',
+            success: (res) => {
+              if (res.confirm) {
+                console.log('用户点击确定')
+                let index = data.findIndex(item => {
+                  return item.fundCode == fundItemObj.fundCode
+                });
+                data.splice(index, 1, fundItemObj)
+                wx.setStorageSync(nowDate, data)
+                wx.navigateBack({
+                  delta: 1
+                })
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          })
+          return;
         }
+      } else {
+        data = [fundItemObj]
       }
-      wx.setStorageSync(nowDate, data)
-      wx.navigateBack({
-        delta: 1
+      wx.showModal({
+        title: '提示',
+        content: '确认保存？',
+        confirmColor: '#00CCFF',
+        success: (res) => {
+          if (res.confirm) {
+            console.log('用户点击确定')
+            wx.setStorageSync(nowDate, data)
+            wx.navigateBack({
+              delta: 1
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
       })
-      // wx.redirectTo({
-      //   url: '../calculate/calculate'
-      // })
     } catch (e) {
       console.log(e)
     }

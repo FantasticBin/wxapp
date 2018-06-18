@@ -1,0 +1,107 @@
+@import "../../lib/weui.wxss";
+
+.main_cell{
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e3e3e3;
+}
+.section__title{
+  width: 260rpx;
+  padding-right: 50rpx;
+  padding-bottom: 25rpx;
+  padding-top: 25rpx;
+  text-align: right;
+  color: #666;
+}
+.section__content{
+  flex: 1;
+}
+.cell_icon{
+  position: absolute;
+  right: 30rpx;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.main__button{
+  background: #00CCFF !important;
+  color: #fff;
+  text-align: center;
+  border-radius: 0;
+}
+.bottom{
+  display: block;
+  font-size: 11px;
+  color:#666;
+  padding-left: 30rpx
+}
+.result_money{
+  color: #00CCFF;
+  font-weight: bold;
+}
+.picker-fix{
+  flex: 1;
+}
+.search_ul{
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  top: 2.58823529em;
+  background: #fff;
+  overflow: hidden;
+  z-index: 999;
+  box-shadow: 0 3rpx 10rpx #aaa;
+  border-bottom-left-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+}
+.search_ul .search_ul_title{
+  background: #ddd;
+}
+.search_ul .search_ul_list{
+  display: block;
+  height: 500rpx;
+  max-height: 500rpx;
+  overflow: auto;
+}
+.search_ul .search_ul_item{
+  display: flex;
+  padding: 20rpx 15rpx;
+  color: #333;
+  border-bottom: 1px solid #efefef;
+  font-size: 30rpx;
+}
+.search_ul .search_code{
+  display: inline-block;
+  width: 250rpx;
+  text-align: center;
+}
+.search_ul .search_name{
+  display: inline-block;
+  flex: 1;
+  text-align: center;
+}
+
+.main_selected{
+  width: 100%;
+}
+.main_selected .selected_item{
+  line-height: 1;
+  background: #FF6666;
+  border-radius: 10rpx;
+  padding: .5em 10rpx;
+  color: #fff;
+  font-size: 28rpx;
+}
+
+.list_null{
+  text-align: center;
+  font-size: 30rpx;
+  padding-top: 100rpx;
+  color: #666;
+}
+.main_radio{
+  padding-left: 35rpx;
+}
+.main_radio:first-child{
+  padding-left: 0;
+}

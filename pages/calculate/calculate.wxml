@@ -1,16 +1,28 @@
 <!--index.wxml-->
 <view class="container">
-  <div class="main_cell" wx:for="{{fundList}}" wx:key="index">
-    <view class="section__title">{{item.fundName}}：</view>
-    <p>￥{{item.resultMoney}}</p>
+  <div style="display:block;min-height:400rpx">
+    <view class="main_cell" wx:for="{{fundList}}" wx:key="index" data-index='{{index}}' catch:longpress="longPress" catch:tap="toDetail">
+      <text class='title text_ellipsis'>{{item.fundName}}</text>
+      <view class='subtitle'>
+        <text class='subtitle_content'>{{item.fundCode}}</text>
+        <text class='subtitle_content'>{{nowDate}}</text>
+        <text class='subtitle_content money'>￥{{item.resultMoney}}</text>
+      </view>
+    </view>
+    <div class="main_cell result" wx:if="{{fundList && fundList.length > 0}}">
+      <view class="section__title">投入总额</view>
+      <p class="result_money money">￥{{resultMoney}}</p>
+    </div>
   </div>
-  <div class="main_result" wx:if="{{fundList}}">
-    <view class="section__title">投入总额：</view>
-    <p class="result_money">￥{{resultMoney}}</p>
-  </div>
-  <div class="flex">
-    <navigator class="main__button" open-type='navigateTo' url="../add/add">添加基金</navigator>
+  <div class="page_bottom flex">
     <button class='main__button2' type='primary' size='middle' bindtap="clear"> 清空 </button>
+    <navigator class="main__button" open-type='navigateTo' url="../add/add">添加基金</navigator>
   </div>
-  <div class="bottom">{{nowDate}}</div>
+  <div class='ocr_button' bindtap='getImg'>
+    <image class='ocr_img' src='../../imgs/icon_ocr.png'></image>
+  </div>
+  <view class='canvas'>
+    <canvas style=" width: {{canvasWidth}}; height: {{canvasHeight}};" canvas-id='img'></canvas>
+  </view>
+  <!-- <div class="bottom">{{nowDate}}</div> -->
 </view>

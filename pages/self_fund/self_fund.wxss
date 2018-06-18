@@ -1,0 +1,44 @@
+.main_cell {
+  position: relative;
+  background: #fff;
+  border-radius: 10rpx;
+  margin: 30rpx;
+  padding: 20rpx;
+  box-shadow: 0 0 20rpx #ddd;
+}
+
+.title {
+  color: #333;
+}
+
+.subtitle {
+  font-size: 25rpx;
+  color: #666;
+  margin-top: 15rpx;
+}
+
+.subtitle .subtitle_content {
+  padding-right: 100rpx;
+}
+.subtitle .subtitle_content:last-child {
+  padding-right: 0;
+}
+
+.cell_icon {
+  position: absolute;
+  right: 30rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.main__button {
+  display: block;
+  /* margin: 40rpx auto; */
+  height: 92rpx;
+  line-height: 92rpx;
+  background: #0cf !important;
+  color: #fff;
+  text-align: center;
+}

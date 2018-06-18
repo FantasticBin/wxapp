@@ -1,0 +1,14 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="main_cell" wx:for="{{fundList}}" wx:key="index" data-index='{{index}}' catch:longpress="longPress" catch:tap>
+    <text class='title text_ellipsis'>{{item.fundName}}</text>
+    <view class='subtitle'>
+      <text class='subtitle_content'>{{item.fundCode}}</text>
+      <text class='subtitle_content'>{{item.startDate}}</text>
+      <text class='subtitle_content'>￥{{item.startMoney}}</text>
+    </view>
+  </view>
+   <div class="page_bottom">
+    <navigator class="main__button" open-type='navigateTo' url="../self_add/self_add">添加基金</navigator>
+  </div>
+</view>
