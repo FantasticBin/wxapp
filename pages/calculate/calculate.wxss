@@ -85,8 +85,12 @@
   padding-top: 20rpx;
 }
 .canvas{
-  width: 0;
-  height: 0;
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  display: block;
+  width: 0px;
+  height: 0px;
   overflow: hidden;
 }
 .ocr_button{

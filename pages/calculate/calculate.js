@@ -126,54 +126,57 @@ Page({
     // 绘制完成后执行回调，API 1.7.0
     canvas.draw(false, () => {
       // 2. 获取图像数据， API 1.9.0
-      wx.canvasGetImageData({
-        canvasId: canvasID,
-        x: 0,
-        y: 0,
-        width: imgWidth,
-        height: imgHeight,
-        success(res) {
-          canvas.clearRect(0, 0, imgWidth, imgHeight)
-          canvas.draw()
-          // 3. png编码
-          let pngData = upng.encode([res.data.buffer], res.width, res.height, 256)
-          // 4. base64编码
-          let base64 = wx.arrayBufferToBase64(pngData)
-          let accessTocken = wx.getStorageSync(staticData.ACCESS_TOCKEN)
-          wx.request({
-            url: `https://aip.baidubce.com/rest/2.0/solution/v1/iocr/recognise?access_token=${accessTocken}`,
-            method: 'POST',
-            header: {
-              'content-type': 'application/x-www-form-urlencoded'
-            },
-            data: {
-              image: encodeURI(base64),
-              templateSign: 'a91a7f83eb860a2a1963623ddbd71025',
-            },
-            success: (res) => {
-              wx.hideLoading()
-              if (res.data.error_code == 0) {
-                let resultList = res.data.data.ret
-                if (resultList && resultList instanceof Array) {
-                  self.parseData(resultList);
+      setTimeout(_ => {
+        wx.canvasGetImageData({
+          canvasId: canvasID,
+          x: 0,
+          y: 0,
+          width: imgWidth,
+          height: imgHeight,
+          success(res) {
+            canvas.clearRect(0, 0, imgWidth, imgHeight)
+            canvas.draw()
+            // 3. png编码
+            let pngData = upng.encode([res.data.buffer], res.width, res.height, 256)
+            // 4. base64编码
+            let base64 = wx.arrayBufferToBase64(pngData)
+            let accessTocken = wx.getStorageSync(staticData.ACCESS_TOCKEN)
+            wx.request({
+              url: `https://aip.baidubce.com/rest/2.0/solution/v1/iocr/recognise?access_token=${accessTocken}`,
+              method: 'POST',
+              header: {
+                'content-type': 'application/x-www-form-urlencoded'
+              },
+              data: {
+                image: encodeURI(base64),
+                templateSign: 'a91a7f83eb860a2a1963623ddbd71025',
+              },
+              success: (res) => {
+                wx.hideLoading()
+                if (res.data.error_code == 0) {
+                  let resultList = res.data.data.ret
+                  if (resultList && resultList instanceof Array) {
+                    self.parseData(resultList);
+                  } else {
+                    wx.showToast({
+                      title: '图片无法识别，请重试',
+                      icon: 'none',
+                      duration: 2000
+                    })
+                  }
                 } else {
                   wx.showToast({
-                    title: '图片无法识别，请重试',
+                    title: res.data.error_msg,
                     icon: 'none',
                     duration: 2000
                   })
                 }
-              } else {
-                wx.showToast({
-                  title: res.data.error_msg,
-                  icon: 'none',
-                  duration: 2000
-                })
               }
-            }
-          })
-        }
-      })
+            })
+          }
+        })
+      }, 300)
+
     })
   },
   parseData(list) {
