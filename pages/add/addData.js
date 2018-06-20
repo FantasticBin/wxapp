@@ -36,7 +36,7 @@ class Add{
       {
         label: '当前股价',
         prop: 'curStockPrice',
-        notRender: data.fundType == 1,
+        notRender: data.fundType == staticData.FUND_TYPE.OUTER,
         value: data.curStockPrice || '',
       },
       {

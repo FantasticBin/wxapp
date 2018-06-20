@@ -39,7 +39,7 @@ Page({
       fundArr: new AddObj(tempData[tempIndex]),
       selectArr: data,
       curFund: tempData[tempIndex],
-      isOuter: tempData[tempIndex].fundType == 1,
+      isOuter: tempData[tempIndex].fundType == staticData.FUND_TYPE.OUTER,
       selectIndex: data.findIndex(item => {
         return item.fundCode == tempData[tempIndex].fundCode
       })
@@ -69,7 +69,7 @@ Page({
       submitObj: {},
       resultMoney: 0,
       realMoney: 0,
-      isOuter: item.fundType == 1,
+      isOuter: item.fundType == staticData.FUND_TYPE.OUTER,
       isChecked: false,
     })
   },
@@ -139,13 +139,13 @@ Page({
           stockCount: large + small
         })
       }
-      fundItemObj.resultMoney = real
+      fundItemObj.resultMoney = parseFloat(real.toFixed(2))
       fundItemObj.curTime = utils.formatTime(new Date()).split(' ')[0].replace(/\//g, '-');
       fundItemObj.fundName = this.data.curFund.fundName;
       fundItemObj.fundCode = this.data.curFund.fundCode;
       this.setData({
         resultMoney: result,
-        realMoney: parseFloat(real.toFixed(2)),
+        realMoney: fundItemObj.resultMoney,
         submitObj: fundItemObj,
       })
     }

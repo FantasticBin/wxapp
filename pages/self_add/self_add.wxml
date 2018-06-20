@@ -5,7 +5,7 @@
       <view class="weui-cells__title">基金名称：</view>
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_input flex_fixed">
-          <input wx:if="{{!selectedFund}}" class="weui-input full_width" id='fundName' bindinput="bindKeyInput" placeholder="" />
+          <input wx:if="{{!selectedFund}}" class="weui-input full_width" id='fundName' bindinput="bindKeyInput" placeholder="请输入基金名称/代码/拼音首字母" />
           <div wx:else class="weui-input main_selected">
             <div class="selected_item text_ellipsis">{{selectedFund.name}}</div>
             <image class="cell_icon" bindtap="delSelected" style="width: 40rpx; height: 40rpx;" src='../../imgs/icon_del.png'></image>

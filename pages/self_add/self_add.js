@@ -12,10 +12,10 @@ Page({
     today: null,
     startMoney: null,
     startPe: null,
-    fundType: '1',
+    fundType: staticData.FUND_TYPE.OUTER,
     fundTypes: [
-      { name: '场外基金', value: 1, checked:true },
-      { name: '场内基金', value: 2 },
+      { name: '场外基金', value: staticData.FUND_TYPE.OUTER, checked:true },
+      { name: '场内基金', value: staticData.FUND_TYPE.INNER },
     ],
     pType: '1',
     pTypes: [
