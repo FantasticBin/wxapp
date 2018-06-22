@@ -82,7 +82,7 @@
   color:#666;
   padding-right: 55rpx;
   text-align: right;
-  padding-top: 20rpx;
+  /* padding-top: 20rpx; */
 }
 .canvas{
   position: absolute;

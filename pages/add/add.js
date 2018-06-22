@@ -79,6 +79,20 @@ Page({
     })
     this.calculate();
   },
+  slider2change(e) {
+    let value = e.detail.value;
+    let newArr = []
+    for (const item of this.data.fundArr) {
+      if ('multiple' == item.prop) {
+        item.value = value
+      }
+      newArr.push(item)
+    }
+    this.setData({
+      fundArr: newArr,
+    })
+    this.calculate();
+  },
   calculate() {
     let fundItemObj = {};
     for (const item of this.data.fundArr) {

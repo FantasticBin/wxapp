@@ -4,6 +4,12 @@ class Add{
   constructor(data){
     let arr = [
       {
+        label: '基金类型',
+        prop: 'fundType',
+        notRender: true,
+        value: data.fundType
+      }, 
+      {
         label: '计算类型',
         prop: 'pType',
         notRender: true,
