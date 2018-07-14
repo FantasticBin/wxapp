@@ -13,15 +13,30 @@ Page({
     startMoney: null,
     startPe: null,
     fundType: staticData.FUND_TYPE.OUTER,
-    fundTypes: [
-      { name: '场外基金', value: staticData.FUND_TYPE.OUTER, checked:true },
-      { name: '场内基金', value: staticData.FUND_TYPE.INNER },
+    fundTypes: [{
+        name: '场外基金',
+        value: staticData.FUND_TYPE.OUTER,
+        checked: true
+      },
+      {
+        name: '场内基金',
+        value: staticData.FUND_TYPE.INNER
+      },
     ],
     pType: '1',
-    pTypes: [
-      { name: '盈利收益率', value: 1, checked:true },
-      { name: '市盈率', value: 2 },
-      { name: '市净率', value: 3 },
+    pTypes: [{
+        name: '盈利收益率',
+        value: 1,
+        checked: true
+      },
+      {
+        name: '市盈率',
+        value: 2
+      },
+      {
+        name: '市净率',
+        value: 3
+      },
     ],
   },
   onLoad: function(options) {
@@ -75,17 +90,17 @@ Page({
       selectedFund: null,
     })
   },
-  fundTypeChange(e){
+  fundTypeChange(e) {
     this.setData({
-      fundType : e.detail.value,
+      fundType: e.detail.value,
     })
   },
-  pTypeChange(e){
+  pTypeChange(e) {
     this.setData({
-      pType : e.detail.value,
+      pType: e.detail.value,
     })
   },
-  fundPEChange(e){
+  fundPEChange(e) {
     console.log(e)
   },
   bindDateChange(e) {
@@ -120,17 +135,29 @@ Page({
       }
       let data = wx.getStorageSync(staticData.SELF_FUND_LIST)
       if (data instanceof Array) {
-        if (data.every(item => item.fundCode != fund.code)) {
+        let defaultIndex = -1;
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].fundCode == fund.code) {
+            defaultIndex = i;
+            break;
+          }
+        }
+        if (defaultIndex == -1) {
           data.push(obj)
         } else {
           wx.showModal({
             title: '提示',
-            content: '基金已存在',
-            confirmColor:'#00CCFF',
-            showCancel:false,
+            content: '基金已存在,是否替换？',
+            confirmColor: '#00CCFF',
+            showCancel: false,
             success: (res) => {
               if (res.confirm) {
                 console.log('用户点击确定')
+                data.splice(defaultIndex, 1, obj)
+                wx.setStorageSync(staticData.SELF_FUND_LIST, data)
+                wx.navigateBack({
+                  delta: 1
+                })
               } else if (res.cancel) {
                 console.log('用户点击取消')
               }

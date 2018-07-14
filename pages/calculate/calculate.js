@@ -149,7 +149,8 @@ Page({
               },
               data: {
                 image: encodeURI(base64),
-                templateSign: 'a91a7f83eb860a2a1963623ddbd71025',
+                // templateSign: 'a91a7f83eb860a2a1963623ddbd71025',
+                templateSign: '22f781e9a174df67d1e40fce72de5624',
               },
               success: (res) => {
                 wx.hideLoading()
