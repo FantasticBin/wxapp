@@ -21,7 +21,7 @@
 }
 
 .subtitle .subtitle_content {
-  padding-right: 100rpx;
+  padding-right: 70rpx;
 }
  .subtitle .subtitle_content:last-child {
   padding-right: 0;
