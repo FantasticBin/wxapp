@@ -12,11 +12,11 @@ Page({
     today: null,
     startMoney: null,
     startPe: null,
+    limitPe: null,
     fundType: staticData.FUND_TYPE.OUTER,
     fundTypes: [{
         name: '场外基金',
         value: staticData.FUND_TYPE.OUTER,
-        checked: true
       },
       {
         name: '场内基金',
@@ -27,7 +27,6 @@ Page({
     pTypes: [{
         name: '盈利收益率',
         value: 1,
-        checked: true
       },
       {
         name: '市盈率',
@@ -43,10 +42,28 @@ Page({
     wx.setNavigationBarTitle({
       title: '添加自选基金'
     })
-    this.setData({
-      today: utils.formatTime(new Date()).split(' ')[0].replace(/\//g, '-'),
-      date: utils.formatTime(new Date()).split(' ')[0].replace(/\//g, '-'),
-    })
+    if (options.index >= 0) {
+      let data = wx.getStorageSync(staticData.SELF_FUND_LIST)
+      let item = data[options.index];
+      this.setData({
+        date: item.startDate,
+        today: utils.formatTime(new Date()).split(' ')[0].replace(/\//g, '-'),
+        selectedFund: {
+          name:item.fundName,
+          code:item.fundCode
+        },
+        startMoney: item.startMoney,
+        startPe: item.startPe,
+        limitPe: item.limitPe,
+        fundType: item.fundType,
+        pType: item.pType,
+      })
+    } else {
+      this.setData({
+        today: utils.formatTime(new Date()).split(' ')[0].replace(/\//g, '-'),
+        date: utils.formatTime(new Date()).split(' ')[0].replace(/\//g, '-'),
+      })
+    }
   },
   bindKeyInput(e) {
     let prop = e.target.id;
@@ -113,9 +130,10 @@ Page({
     let startDate = this.data.date
     let startMoney = this.data.startMoney
     let startPe = this.data.startPe
+    let limitPe = this.data.limitPe
     let fundType = this.data.fundType
     let pType = this.data.pType
-    if (!fund || !startDate || !startMoney || !startPe) {
+    if (!fund || !startDate || !startMoney || !startPe || !limitPe) {
       wx.showToast({
         title: '请填写完整',
         icon: 'none',
@@ -132,6 +150,7 @@ Page({
         startMoney: startMoney,
         pType: pType,
         startPe: startPe,
+        limitPe: limitPe,
       }
       let data = wx.getStorageSync(staticData.SELF_FUND_LIST)
       if (data instanceof Array) {

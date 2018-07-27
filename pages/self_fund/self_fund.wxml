@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="main_cell" wx:for="{{fundList}}" wx:key="index" data-index='{{index}}' catch:longpress="longPress" catch:tap>
+  <view class="main_cell" wx:for="{{fundList}}" wx:key="index" data-index='{{index}}' catch:longpress="longPress" catch:tap="toDetail">
     <text class='title text_ellipsis'>{{item.fundName}}</text>
     <view class='subtitle'>
       <text class='subtitle_content'>{{item.fundCode}}</text>

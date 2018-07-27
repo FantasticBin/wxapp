@@ -16,6 +16,12 @@ class Add{
         value: data.pType
       }, 
       {
+        label: '低估临界值',
+        prop: 'limitPe',
+        notRender: true,
+        value: data.limitPe
+      }, 
+      {
         label: '起投金额',
         prop: 'startMoney',
         value: data.startMoney, 

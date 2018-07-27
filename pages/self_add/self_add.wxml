@@ -33,7 +33,7 @@
       <view class="weui-cells_after-title">
         <view class="weui-cell weui-cell_input">
           <radio-group class="radio-group" bindchange="fundTypeChange">
-            <radio wx:for="{{fundTypes}}" wx:key="index" class='main_radio' value="{{item.value}}" checked="{{item.checked}}">
+            <radio wx:for="{{fundTypes}}" wx:key="index" class='main_radio' value="{{item.value}}" checked="{{fundType == item.value}}">
               <text>{{item.name}}</text>
             </radio>
           </radio-group>
@@ -57,7 +57,7 @@
       <view class="weui-cells_after-title">
         <view class="weui-cell weui-cell_input">
           <radio-group class="radio-group" bindchange="pTypeChange">
-            <radio wx:for="{{pTypes}}" wx:key="index" class='main_radio' value="{{item.value}}" checked="{{item.checked}}">
+            <radio wx:for="{{pTypes}}" wx:key="index" class='main_radio' value="{{item.value}}" checked="{{pType == item.value}}">
               <text>{{item.name}}</text>
             </radio>
           </radio-group>
@@ -68,7 +68,16 @@
       <view class="weui-cells__title">起投市盈率/盈利收益率(%)：</view>
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_input">
-          <input class="weui-input " type="digit" id='startPe' bindinput="bindKeyInput" placeholder="" />
+          <input class="weui-input " type="digit" id='startPe' value="{{startPe}}" bindinput="bindKeyInput" placeholder="" />
+           <span class="cell_icon" wx:if="{{pType == 1}}">%</span> 
+        </view>
+      </view>
+    </view>
+    <view class="page-section">
+      <view class="weui-cells__title">低估临界值：</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input class="weui-input " type="digit" id='limitPe' value="{{limitPe}}" bindinput="bindKeyInput" placeholder="" />
            <span class="cell_icon" wx:if="{{pType == 1}}">%</span> 
         </view>
       </view>
@@ -77,7 +86,7 @@
       <view class="weui-cells__title">起投金额：</view>
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_input">
-          <input class="weui-input full_width" type="digit" id='startMoney' bindinput="bindKeyInput" placeholder="" />
+          <input class="weui-input full_width" type="digit" id='startMoney' value="{{startMoney}}" bindinput="bindKeyInput" placeholder="" />
         </view>
       </view>
     </view>

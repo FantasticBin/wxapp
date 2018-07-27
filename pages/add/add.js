@@ -157,6 +157,7 @@ Page({
       fundItemObj.curTime = utils.formatTime(new Date()).split(' ')[0].replace(/\//g, '-');
       fundItemObj.fundName = this.data.curFund.fundName;
       fundItemObj.fundCode = this.data.curFund.fundCode;
+      fundItemObj.limitLow = fundItemObj.pType == 1 ? (parseFloat(fundItemObj.limitPe) < parseFloat(fundItemObj.curPe) ? true : false) : (parseFloat(fundItemObj.limitPe) > parseFloat(fundItemObj.curPe) ? true : false)
       this.setData({
         resultMoney: result,
         realMoney: fundItemObj.resultMoney,

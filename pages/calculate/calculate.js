@@ -229,6 +229,7 @@ Page({
       })
       if (ImgResultItem) {
         tempItem.curPe = ImgResultItem.curPy ? ImgResultItem.curPy.replace(/%/g, '') : null || ImgResultItem.curPe
+        tempItem.limitLow = item.pType == 1 ? (parseFloat(item.limitPe) < parseFloat(tempItem.curPe) ? true : false) : (parseFloat(item.limitPe) > parseFloat(tempItem.curPe) ? true : false)
         tempItem.multiple = 2
         tempItem.curTime = utils.formatTime(new Date()).split(' ')[0].replace(/\//g, '-')
         tempItem.resultMoney = this.calculate(tempItem)

@@ -6,6 +6,10 @@
   padding: 20rpx;
   box-shadow: 0 0 20rpx #ddd;
 }
+.main_cell_limit {
+  background: #8dd7a4;
+  /* box-shadow: 0 0 20rpx #a9e6bc; */
+}
 
 .title {
   color: #333;

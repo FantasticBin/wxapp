@@ -32,6 +32,11 @@ Page({
       })
     }
   },
+  toDetail(e) {
+    wx.navigateTo({
+      url: `../self_add/self_add?index=${e.currentTarget.dataset.index}`
+    })
+  },
   longPress(e) {
     wx.showModal({
       title: '提示',
