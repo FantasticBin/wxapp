@@ -11,7 +11,6 @@ Page({
   data: {
     fundList: null,
     resultMoney: 0,
-    nowDate: '',
     canvasWidth: '0px',
     canvasHeight: '0px',
   },
@@ -30,8 +29,7 @@ Page({
     this.loadData();
   },
   loadData() {
-    let nowDate = utils.formatTime(new Date()).split(' ')[0]
-    let data = wx.getStorageSync(nowDate)
+    let data = wx.getStorageSync(staticData.SAVED_FUND_LIST)
     if (data) {
       let sum = 0;
       for (const item of data) {
@@ -40,16 +38,12 @@ Page({
       this.setData({
         fundList: data,
         resultMoney: sum,
-        nowDate: nowDate
       })
     }
-    this.setData({
-      nowDate: nowDate
-    })
   },
   toDetail(e) {
     wx.navigateTo({
-      url: `../add/add?index=${e.currentTarget.dataset.index}&date=${this.data.nowDate}`
+      url: `../add/add?index=${e.currentTarget.dataset.index}`
     })
   },
   longPress(e) {
@@ -62,7 +56,7 @@ Page({
           let index = e.currentTarget.dataset.index;
           let listTemp = Object.assign([], this.data.fundList);
           listTemp.splice(index, 1);
-          wx.setStorageSync(this.data.nowDate, listTemp)
+          wx.setStorageSync(staticData.SAVED_FUND_LIST, listTemp)
           this.loadData();
         } else if (res.cancel) {
           console.log('用户点击取消')
@@ -72,7 +66,7 @@ Page({
   },
   clear() {
     try {
-      wx.removeStorageSync(this.data.nowDate)
+      wx.removeStorageSync(staticData.SAVED_FUND_LIST)
       this.setData({
         fundList: null,
         resultMoney: 0,
@@ -238,7 +232,7 @@ Page({
     }
     // console.log(finalArr)
     if (finalArr.length > 0) {
-      wx.setStorageSync(utils.formatTime(new Date()).split(' ')[0], finalArr)
+      wx.setStorageSync(staticData.SAVED_FUND_LIST, finalArr)
       this.loadData();
     } else {
       wx.showToast({

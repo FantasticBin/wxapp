@@ -32,7 +32,7 @@ Page({
     let tempData = data;
     let tempIndex = 0;
     if (options.index >= 0) {
-      tempData = wx.getStorageSync(options.date);
+      tempData = wx.getStorageSync(staticData.SAVED_FUND_LIST);
       tempIndex = options.index;
     }
     this.setData({
@@ -168,8 +168,7 @@ Page({
   add() {
     try {
       let fundItemObj = this.data.submitObj;
-      let nowDate = utils.formatTime(new Date()).split(' ')[0]
-      let data = wx.getStorageSync(nowDate)
+      let data = wx.getStorageSync(staticData.SAVED_FUND_LIST)
       if (data && data instanceof Array) {
         if (data.every(item => item.fundCode != fundItemObj.fundCode)) {
           data.push(fundItemObj)
@@ -185,7 +184,7 @@ Page({
                   return item.fundCode == fundItemObj.fundCode
                 });
                 data.splice(index, 1, fundItemObj)
-                wx.setStorageSync(nowDate, data)
+                wx.setStorageSync(staticData.SAVED_FUND_LIST, data)
                 wx.navigateBack({
                   delta: 1
                 })
@@ -206,7 +205,7 @@ Page({
         success: (res) => {
           if (res.confirm) {
             console.log('用户点击确定')
-            wx.setStorageSync(nowDate, data)
+            wx.setStorageSync(staticData.SAVED_FUND_LIST, data)
             wx.navigateBack({
               delta: 1
             })

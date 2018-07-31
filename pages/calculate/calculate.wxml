@@ -26,5 +26,4 @@
   <view class='canvas'>
     <canvas style=" width: {{canvasWidth}}; height: {{canvasHeight}};" canvas-id='img'></canvas>
   </view>
-   <div class="bottom">{{nowDate}}</div> 
 </view>

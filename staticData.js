@@ -11,5 +11,6 @@ module.exports = {
   RATE: rate,
   FUND_TYPE: fundType,
   SELF_FUND_LIST:'self_fund_list',
+  SAVED_FUND_LIST:'saved_fund_list',
   ACCESS_TOCKEN:'ACCESS_TOCKEN',
 }
