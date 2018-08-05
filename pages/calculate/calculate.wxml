@@ -8,6 +8,7 @@
         <text class='subtitle_content'>{{item.multiple}}倍</text>
         <text class='subtitle_content'>{{item.startMoney}}</text>
         <text class='subtitle_content'>阈值:{{item.limitPe}}</text>
+        <text class='subtitle_content'>{{item.lowRate}}</text>
         <text class='subtitle_content money'>￥{{item.resultMoney}}</text>
       </view>
     </view>

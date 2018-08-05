@@ -157,7 +157,16 @@ Page({
       fundItemObj.curTime = utils.formatTime(new Date()).split(' ')[0].replace(/\//g, '-');
       fundItemObj.fundName = this.data.curFund.fundName;
       fundItemObj.fundCode = this.data.curFund.fundCode;
-      fundItemObj.limitLow = fundItemObj.pType == 1 ? (parseFloat(fundItemObj.limitPe) < parseFloat(fundItemObj.curPe) ? true : false) : (parseFloat(fundItemObj.limitPe) > parseFloat(fundItemObj.curPe) ? true : false)
+      // 计算低估率
+      let percent = 0;
+      if (fundItemObj.pType == staticData.RATE.PY) {
+        percent = (fundItemObj.limitPe - fundItemObj.curPe) / fundItemObj.limitPe;
+      } else if (fundItemObj.pType == staticData.RATE.PE) {
+        percent = (fundItemObj.curPe - fundItemObj.limitPe) / fundItemObj.limitPe;
+      }
+      // 是否达到阈值
+      fundItemObj.limitLow = percent < 0 ? true : false
+      fundItemObj.lowRate = (percent * 100).toFixed(2) + '%'; // 低估率--越大越低估
       this.setData({
         resultMoney: result,
         realMoney: fundItemObj.resultMoney,
@@ -184,7 +193,10 @@ Page({
                   return item.fundCode == fundItemObj.fundCode
                 });
                 data.splice(index, 1, fundItemObj)
-                wx.setStorageSync(staticData.SAVED_FUND_LIST, data)
+                let finalData = data.sort((a, b) => {
+                  return parseFloat(a.lowRate) > parseFloat(b.lowRate);
+                })
+                wx.setStorageSync(staticData.SAVED_FUND_LIST, finalData)
                 wx.navigateBack({
                   delta: 1
                 })
@@ -205,7 +217,10 @@ Page({
         success: (res) => {
           if (res.confirm) {
             console.log('用户点击确定')
-            wx.setStorageSync(staticData.SAVED_FUND_LIST, data)
+            let finalData = data.sort((a, b) => {
+              return parseFloat(a.lowRate) > parseFloat(b.lowRate);
+            })
+            wx.setStorageSync(staticData.SAVED_FUND_LIST, finalData)
             wx.navigateBack({
               delta: 1
             })

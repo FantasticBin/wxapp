@@ -33,7 +33,9 @@ Page({
     if (data) {
       let sum = 0;
       for (const item of data) {
-        sum += parseFloat(item.resultMoney)
+        if (item.limitLow) {
+          sum += parseFloat(item.resultMoney)
+        }
       }
       this.setData({
         fundList: data,
@@ -211,7 +213,7 @@ Page({
       })
       return;
     }
-    let finalArr = [];
+    let tempFinalArr = [];
     for (const item of selfFundList) {
       let tempItem = Object.assign({}, item);
       let ImgResultItem = tempArr.find(ele => {
@@ -223,14 +225,14 @@ Page({
       })
       if (ImgResultItem) {
         tempItem.curPe = ImgResultItem.curPy ? ImgResultItem.curPy.replace(/%/g, '') : null || ImgResultItem.curPe
-        tempItem.limitLow = item.pType == 1 ? (parseFloat(item.limitPe) < parseFloat(tempItem.curPe) ? true : false) : (parseFloat(item.limitPe) > parseFloat(tempItem.curPe) ? true : false)
         tempItem.multiple = 2
         tempItem.curTime = utils.formatTime(new Date()).split(' ')[0].replace(/\//g, '-')
         tempItem.resultMoney = this.calculate(tempItem)
-        finalArr.push(tempItem)
+        tempFinalArr.push(tempItem)
       }
     }
-    // console.log(finalArr)
+    // console.log(tempFinalArr)
+    let finalArr = this.sortList(tempFinalArr);
     if (finalArr.length > 0) {
       wx.setStorageSync(staticData.SAVED_FUND_LIST, finalArr)
       this.loadData();
@@ -241,6 +243,24 @@ Page({
         duration: 2000
       })
     }
+  },
+  sortList(tempArr) { // 计算低估并排序
+    let tempFinal = tempArr.map(item => {
+      let percent = 0;
+      if (item.pType == staticData.RATE.PY) {
+        percent = (item.limitPe - item.curPe) / item.limitPe;
+      } else if (item.pType == staticData.RATE.PE) {
+        percent = (item.curPe - item.limitPe) / item.limitPe;
+      }
+      // 是否达到阈值
+      item.limitLow = percent < 0 ? true : false
+      item.lowRate = (percent * 100).toFixed(2) + '%'; // 低估率--越大越低估
+      return item;
+    })
+    let sortedList = tempFinal.sort((a, b) => {
+      return parseFloat(a.lowRate) > parseFloat(b.lowRate);
+    })
+    return sortedList;
   },
   calculate(fundItemObj) {
     let startDate = new Date(fundItemObj.startDate.replace(/-/g, '/'));
