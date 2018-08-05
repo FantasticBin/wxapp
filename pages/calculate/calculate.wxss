@@ -6,13 +6,16 @@
   padding: 20rpx;
   box-shadow: 0 0 10rpx #ddd;
 }
+
 .main_cell_limit {
-  background: #5CA780;
+  background: #5ca780;
   /* box-shadow: 0 0 20rpx #ddd; */
 }
+
 .main_cell_limit .title {
   color: #fdfdfd;
 }
+
 .main_cell_limit .subtitle {
   color: #efefef;
 }
@@ -29,11 +32,19 @@
 .subtitle .subtitle_content {
   padding-right: 40rpx;
 }
- .subtitle .subtitle_content:last-child {
+
+.subtitle .subtitle_content:last-child {
   padding-right: 0;
   padding-left: 50rpx;
-} 
-.money{
+}
+
+.subtitle .subtitle_content.subtitle_content_inner {
+  display: inline-block;
+  width: 90rpx;
+  white-space: nowrap;
+}
+
+.money {
   position: absolute;
   right: 30rpx;
   top: 50%;
@@ -41,12 +52,14 @@
   font-size: 35rpx;
   font-weight: bold;
 }
+
 .main_result {
   display: flex;
   align-items: center;
 }
-.result_money{
-  color: #FF6666;
+
+.result_money {
+  color: #f66;
   font-weight: bold;
 }
 
@@ -55,14 +68,15 @@
   color: #333;
 }
 
-.flex{
+.flex {
   display: flex;
 }
-.result{
+
+.result {
   display: flex;
   align-items: center;
-  background: #BFEFFF;
-  box-shadow: 0 0 10rpx #BFEFFF;
+  background: #bfefff;
+  box-shadow: 0 0 10rpx #bfefff;
 }
 
 .main__button {
@@ -70,7 +84,7 @@
   width: 50%;
   height: 92rpx;
   line-height: 92rpx;
-  background: #00CCFF !important;
+  background: #0cf !important;
   color: #fff;
   text-align: center;
 }
@@ -80,21 +94,22 @@
   width: 50%;
   height: 92rpx;
   line-height: 92rpx;
-  background: #FF6666 !important;
+  background: #f66 !important;
   color: #fff;
   text-align: center;
   border-radius: 0;
 }
 
-.bottom{
+.bottom {
   display: block;
   font-size: 12px;
-  color:#666;
+  color: #666;
   padding-right: 55rpx;
   text-align: right;
   /* padding-top: 20rpx; */
 }
-.canvas{
+
+.canvas {
   position: absolute;
   left: -9999px;
   top: -9999px;
@@ -103,23 +118,25 @@
   height: 0px;
   overflow: hidden;
 }
-.ocr_button{
+
+.ocr_button {
   position: fixed;
   right: 25rpx;
   bottom: 110rpx;
   display: block;
   width: 120rpx;
   height: 120rpx;
-  background: #ff99cc !important;
+  background: #f9c !important;
   color: #fff;
   border-radius: 100%;
   box-shadow: 0 0 20rpx #ddd;
 }
-.ocr_img{
+
+.ocr_img {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   width: 70rpx;
   height: 70rpx;
 }

@@ -5,8 +5,8 @@
   padding: 200rpx 50rpx;
 }
 
-.main__button{
-  background: #00CCFF;
+.main__button {
+  background: #0cf;
   color: #fff;
   border-radius: 10rpx;
   padding: 30rpx;
@@ -15,20 +15,23 @@
   margin-bottom: 50rpx;
   box-shadow: 0 0 30rpx #bbb;
 }
-.main__button div{
+
+.main__button div {
   display: block;
   font-size: 30rpx;
 }
-.main__button.disabled{
-  background: #71B1C2;
+
+.main__button.disabled {
+  background: #71b1c2;
   box-shadow: 0 0 0;
 }
-.button_img{
+
+.button_img {
   width: 128rpx;
   height: 128rpx;
   padding: 5rpx;
 }
-.button_tip{
+
+.button_tip {
   font-size: 20rpx !important;
 }
-

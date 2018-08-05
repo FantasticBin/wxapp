@@ -8,7 +8,7 @@
       <text class='subtitle_content'>￥{{item.startMoney}}</text>
     </view>
   </view>
-   <div class="page_bottom">
+  <div class="page_bottom">
     <navigator class="main__button" open-type='navigateTo' url="../self_add/self_add">添加基金</navigator>
   </div>
 </view>

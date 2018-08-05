@@ -1,30 +1,29 @@
 var staticData = require("../../staticData.js");
 
-class Add{
-  constructor(data){
-    let arr = [
-      {
+class Add {
+  constructor(data) {
+    let arr = [{
         label: '基金类型',
         prop: 'fundType',
         notRender: true,
         value: data.fundType
-      }, 
+      },
       {
         label: '计算类型',
         prop: 'pType',
         notRender: true,
         value: data.pType
-      }, 
+      },
       {
         label: '低估临界值',
         prop: 'limitPe',
         notRender: true,
         value: data.limitPe
-      }, 
+      },
       {
         label: '起投金额',
         prop: 'startMoney',
-        value: data.startMoney, 
+        value: data.startMoney,
         disabled: true,
       },
       {
@@ -32,7 +31,7 @@ class Add{
         label: '起投时间',
         prop: 'startDate',
         value: data.startDate,
-        disabled:true,
+        disabled: true,
       },
       {
         label: `起投${data.pType == staticData.RATE.PY ? '盈收率' : 'PE'}`,

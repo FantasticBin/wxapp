@@ -49,8 +49,8 @@ Page({
         date: item.startDate,
         today: utils.formatTime(new Date()).split(' ')[0].replace(/\//g, '-'),
         selectedFund: {
-          name:item.fundName,
-          code:item.fundCode
+          name: item.fundName,
+          code: item.fundCode
         },
         startMoney: item.startMoney,
         startPe: item.startPe,

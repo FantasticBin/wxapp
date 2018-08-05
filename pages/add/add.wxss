@@ -1,18 +1,21 @@
-.main_cell{
+.main_cell {
   position: relative;
   display: flex;
   align-items: center;
 }
-.main_cell.active{
+
+.main_cell.active {
   background: #fff;
   box-shadow: 0 0 20rpx #ddd;
   border-radius: 30rpx;
   margin: 0 10rpx 10rpx;
 }
-.main_cell.active .section__title{
+
+.main_cell.active .section__title {
   width: 250rpx;
 }
-.section__title{
+
+.section__title {
   width: 260rpx;
   padding-right: 50rpx;
   padding-bottom: 25rpx;
@@ -21,41 +24,48 @@
   color: #666;
   font-size: 35rpx;
 }
-.section__content{
+
+.section__content {
   flex: 1;
 }
-.cell_icon{
+
+.cell_icon {
   position: absolute;
   right: 30rpx;
   top: 50%;
   transform: translateY(-50%);
 }
-.main__button{
-  background: #00CCFF !important;
+
+.main__button {
+  background: #0cf !important;
   color: #fff;
   text-align: center;
   border-radius: 0;
 }
-.flex{
+
+.flex {
   display: flex;
   padding: 40rpx 0;
 }
-.main__body{
+
+.main__body {
   display: block;
   padding-top: 20rpx;
 }
-.bottom{
+
+.bottom {
   display: block;
   font-size: 11px;
-  color:#666;
-  padding-left: 30rpx
+  color: #666;
+  padding-left: 30rpx;
 }
-.result_money{
-  color: #00CCFF;
+
+.result_money {
+  color: #0cf;
   font-weight: bold;
 }
-.selectpicker{
+
+.selectpicker {
   flex: 1;
   padding-right: 20rpx;
 }
-
