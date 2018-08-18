@@ -68,36 +68,11 @@
   color: #333;
 }
 
-.flex {
-  display: flex;
-}
-
 .result {
   display: flex;
   align-items: center;
   background: #bfefff;
   box-shadow: 0 0 10rpx #bfefff;
-}
-
-.main__button {
-  display: block;
-  width: 50%;
-  height: 92rpx;
-  line-height: 92rpx;
-  background: #0cf !important;
-  color: #fff;
-  text-align: center;
-}
-
-.main__button2 {
-  display: block;
-  width: 50%;
-  height: 92rpx;
-  line-height: 92rpx;
-  background: #f66 !important;
-  color: #fff;
-  text-align: center;
-  border-radius: 0;
 }
 
 .bottom {
@@ -120,16 +95,13 @@
 }
 
 .ocr_button {
-  position: fixed;
-  right: 25rpx;
-  bottom: 110rpx;
   display: block;
   width: 120rpx;
   height: 120rpx;
-  background: #f9c !important;
+  background: #0cf !important;
   color: #fff;
   border-radius: 100%;
-  box-shadow: 0 0 20rpx #ddd;
+  /* box-shadow: 0 0 20rpx #ddd; */
 }
 
 .ocr_img {
@@ -139,4 +111,45 @@
   transform: translate(-50%, -50%);
   width: 70rpx;
   height: 70rpx;
+}
+
+movable-area {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
+.dialog {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: #fff;
+  opacity: 0;
+}
+
+.dialog_content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 270rpx;
+  height: 300rpx;
+  opacity: 1;
+}
+
+.dialog_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120rpx;
+  height: 120rpx;
+  padding: 0;
+  color: #fff;
+  border-radius: 100%;
+  /* box-shadow: 0 0 20rpx #ddd; */
 }

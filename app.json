@@ -1,11 +1,9 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/calculate/calculate",
     "pages/add/add",
     "pages/self_fund/self_fund",
-    "pages/self_add/self_add",
-    "pages/logs/logs"
+    "pages/self_add/self_add"
   ],
   "window": {
     "backgroundTextStyle": "light",

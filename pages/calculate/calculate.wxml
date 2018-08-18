@@ -1,30 +1,45 @@
 <!--index.wxml-->
-<view class="container">
-  <div style="display:block;min-height:400rpx">
-    <view class="main_cell {{item.limitLow?'main_cell_limit':''}}" wx:for="{{fundList}}" wx:key="index" data-index='{{index}}' catch:longpress="longPress" catch:tap="toDetail">
-      <text class='title text_ellipsis'>{{item.fundName}}</text>
-      <view class='subtitle'>
-        <text class='subtitle_content'>{{item.fundCode}}</text>
-        <text class='subtitle_content'>{{item.multiple}}倍</text>
-        <text class='subtitle_content'>{{item.startMoney}}</text>
-        <text class='subtitle_content subtitle_content_inner'>阈值:{{item.limitPe}}</text>
-        <text class='subtitle_content'>{{item.lowRate}}</text>
-        <text class='subtitle_content money'>￥{{item.resultMoney}}</text>
+<view class="container" style='padding-bottom:0'>
+  <movable-area>
+    <div style="display:block;min-height:400rpx">
+      <view class="main_cell {{item.limitLow?'main_cell_limit':''}}" wx:for="{{fundList}}" wx:key="index" data-index='{{index}}' catch:longpress="longPress" catch:tap="toDetail">
+        <text class='title text_ellipsis'>{{item.fundName}}</text>
+        <view class='subtitle'>
+          <text class='subtitle_content'>{{item.fundCode}}</text>
+          <text class='subtitle_content'>{{item.multiple}}倍</text>
+          <text class='subtitle_content'>{{item.startMoney}}</text>
+          <text class='subtitle_content subtitle_content_inner'>阈值:{{item.limitPe}}</text>
+          <text class='subtitle_content'>{{item.lowRate}}</text>
+          <text class='subtitle_content money'>￥{{item.resultMoney}}</text>
+        </view>
       </view>
-    </view>
-    <div class="main_cell result" wx:if="{{fundList && fundList.length > 0}}">
-      <view class="section__title">投入总额</view>
-      <p class="result_money money">￥{{resultMoney}}</p>
+      <div class="main_cell result" wx:if="{{fundList && fundList.length > 0}}">
+        <view class="section__title">投入总额</view>
+        <p class="result_money money">￥{{resultMoney}}</p>
+      </div>
     </div>
-  </div>
-  <div class="page_bottom flex">
-    <button class='main__button2' type='primary' size='middle' bindtap="clear"> 清空 </button>
-    <navigator class="main__button" open-type='navigateTo' url="../add/add">添加基金</navigator>
-  </div>
-  <div class='ocr_button' bindtap='getImg'>
-    <image class='ocr_img' src='../../imgs/icon_ocr.png'></image>
-  </div>
+    <movable-view class='ocr_button' x="{{x}}" y="{{y}}" direction="all" bindtap='showMore' bindchange="buttonMove">
+      <image class='ocr_img' src='../../imgs/icon_more.png'></image>
+      <image class='ocr_img' src='../../imgs/icon_more.png'></image>
+    </movable-view>
+  </movable-area>
   <view class='canvas'>
     <canvas style=" width: {{canvasWidth}}; height: {{canvasHeight}};" canvas-id='img'></canvas>
+  </view>
+  <view class='dialog' animation="{{animationData}}" wx:if="{{showDialog}}" bindtap='closeMore'>
+    <view class='dialog_content'>
+      <navigator class="dialog_button" style="background:#0cf;" open-type='navigateTo' url="../add/add">
+        <image style='width:64rpx;height:64rpx' src='../../imgs/icon_add.png'></image>
+      </navigator>
+      <navigator class="dialog_button" style="background:#22DD92;" open-type='navigateTo' url="../self_fund/self_fund">
+        <image style='width:78rpx;height:78rpx' src='../../imgs/selection.png'></image>
+      </navigator>
+      <div class='dialog_button' style="background:#f66;" type='primary' size='middle' bindtap="clear">
+        <image style='width:80rpx;height:80rpx' src='../../imgs/icon_clear.png'></image>
+      </div>
+      <div class='dialog_button' style="background:#EE6AA7;" bindtap='getImg'>
+        <image style='width:64rpx;height:64rpx' src='../../imgs/icon_ocr.png'></image>
+      </div>
+    </view>
   </view>
 </view>
