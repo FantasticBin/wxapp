@@ -2,7 +2,6 @@
 var staticData = require("../../staticData.js");
 var utils = require("../../utils/util.js");
 var upng = require('../../lib/upng-js/UPNG.js')
-const BUTTON_POSITION = 'button_position';
 
 Page({
 
@@ -10,14 +9,27 @@ Page({
    * 页面的初始数据
    */
   data: {
-    x: 1000,
-    y: 1000,
     fundList: null,
     resultMoney: 0,
     canvasWidth: '0px',
     canvasHeight: '0px',
-    animationData: {},
-    showDialog: false,
+    buttons: [{
+        label: '识别',
+        icon: "../../imgs/image.svg",
+      },
+      {
+        label: '添加',
+        icon: "../../imgs/plus.svg",
+      },
+      {
+        label: '自选',
+        icon: "../../imgs/heart.svg",
+      },
+      {
+        label: '清空',
+        icon: "../../imgs/delete.svg",
+      }
+    ],
   },
 
   /**
@@ -28,32 +40,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function(options) {
-    this.setButtonPosition();
-    wx.setNavigationBarTitle({
-      title: '定投助手'
-    })
     this.loadData();
-  },
-  onHide() {
-    wx.setStorageSync(BUTTON_POSITION, {
-      x: this.data.x,
-      y: this.data.y,
-    })
-  },
-  buttonMove(e) {
-    this.setData({
-      x: e.detail.x,
-      y: e.detail.y,
-    })
-  },
-  setButtonPosition() {
-    let position = wx.getStorageSync(BUTTON_POSITION);
-    if (position) {
-      this.setData({
-        x: position.x,
-        y: position.y
-      })
-    }
   },
   loadData() {
     let data = wx.getStorageSync(staticData.SAVED_FUND_LIST)
@@ -70,41 +57,27 @@ Page({
       })
     }
   },
-  showMore() {
-    let animation = wx.createAnimation({
-      duration: 300,
-      timingFunction: "ease",
-    })
-    this.setData({
-      animationData: animation.export(),
-      showDialog: true,
-    })
-    setTimeout(function() {
-      animation.opacity(1).step()
-      this.setData({
-        animationData: animation.export()
-      })
-    }.bind(this), 0)
-  },
-  closeMore() {
-    let animation = wx.createAnimation({
-      duration: 300,
-      timingFunction: "ease",
-    })
-    animation.opacity(0).step()
-    this.setData({
-      animationData: animation.export(),
-    })
-    setTimeout(function() {
-      this.setData({
-        showDialog: false,
-      })
-    }.bind(this), 300)
-  },
   toDetail(e) {
     wx.navigateTo({
       url: `../add/add?index=${e.currentTarget.dataset.index}`
     })
+  },
+  buttonClicked(e) {
+    const {
+      index
+    } = e.detail
+    // 识别
+    index === 0 && this.getImg();
+    //添加
+    index === 1 && wx.navigateTo({
+      url: '../add/add'
+    })
+    //自选
+    index === 2 && wx.navigateTo({
+      url: '../self_fund/self_fund'
+    })
+    //清空
+    index === 3 && this.clear();
   },
   longPress(e) {
     wx.showModal({

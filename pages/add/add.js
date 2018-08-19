@@ -17,9 +17,6 @@ Page({
     isChecked: false,
   },
   onLoad: function(options) {
-    wx.setNavigationBarTitle({
-      title: '添加定投基金'
-    })
     let data = wx.getStorageSync(staticData.SELF_FUND_LIST)
     if (!data) {
       wx.showToast({

@@ -1,1 +1,5 @@
-{}
+{
+  "usingComponents": {
+    "wux-floating-button": "../../components/floating-button/index"
+  }
+}

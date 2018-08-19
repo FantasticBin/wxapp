@@ -8,7 +8,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#FBF9FE",
-    "navigationBarTitleText": "Calculator",
+    "navigationBarTitleText": "定投计算助手",
     "navigationBarTextStyle": "black"
   }
 }

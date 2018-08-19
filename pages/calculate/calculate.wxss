@@ -75,15 +75,6 @@
   box-shadow: 0 0 10rpx #bfefff;
 }
 
-.bottom {
-  display: block;
-  font-size: 12px;
-  color: #666;
-  padding-right: 55rpx;
-  text-align: right;
-  /* padding-top: 20rpx; */
-}
-
 .canvas {
   position: absolute;
   left: -9999px;
@@ -94,62 +85,16 @@
   overflow: hidden;
 }
 
-.ocr_button {
-  display: block;
-  width: 120rpx;
-  height: 120rpx;
-  background: #0cf !important;
-  color: #fff;
-  border-radius: 100%;
-  /* box-shadow: 0 0 20rpx #ddd; */
+.floating-button{
+  background: #ACC7DC !important;
+}
+.floating-buttons:nth-of-type(1){
+  background: #22dd92 !important;
+}
+.floating-buttons:nth-of-type(3) {
+  background: #ee6aa7 !important;
+}
+.floating-buttons:nth-of-type(4) {
+  background: #f66 !important;
 }
 
-.ocr_img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 70rpx;
-  height: 70rpx;
-}
-
-movable-area {
-  height: 100%;
-  width: 100%;
-  overflow: auto;
-}
-
-.dialog {
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  background: #fff;
-  opacity: 0;
-}
-
-.dialog_content {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  width: 270rpx;
-  height: 300rpx;
-  opacity: 1;
-}
-
-.dialog_button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 120rpx;
-  height: 120rpx;
-  padding: 0;
-  color: #fff;
-  border-radius: 100%;
-  /* box-shadow: 0 0 20rpx #ddd; */
-}

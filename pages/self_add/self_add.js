@@ -39,9 +39,6 @@ Page({
     ],
   },
   onLoad: function(options) {
-    wx.setNavigationBarTitle({
-      title: '添加自选基金'
-    })
     if (options.index >= 0) {
       let data = wx.getStorageSync(staticData.SELF_FUND_LIST)
       let item = data[options.index];
