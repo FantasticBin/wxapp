@@ -164,7 +164,7 @@ Page({
             canvas.clearRect(0, 0, imgWidth, imgHeight)
             canvas.draw()
             // 3. png编码
-            let pngData = upng.encode([res.data.buffer], res.width, res.height, 256)
+            let pngData = upng.encode([res.data.buffer], res.width, res.height)
             // 4. base64编码
             let base64 = wx.arrayBufferToBase64(pngData)
             let accessTocken = wx.getStorageSync(staticData.ACCESS_TOCKEN)
