@@ -97,4 +97,7 @@
 .floating-buttons:nth-of-type(4) {
   background: #f66 !important;
 }
+.floating-buttons:nth-of-type(5) {
+  background: #FFD322 !important;
+}
 

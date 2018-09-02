@@ -28,6 +28,10 @@ Page({
       {
         label: '清空',
         icon: "../../imgs/delete.svg",
+      },
+      {
+        label: '计算',
+        icon: "../../imgs/calculator.svg",
       }
     ],
   },
@@ -75,6 +79,10 @@ Page({
     //自选
     index === 2 && wx.navigateTo({
       url: '../self_fund/self_fund'
+    })
+    //计算
+    index === 4 && wx.navigateTo({
+      url: '/pages/calMoney/index'
     })
     //清空
     index === 3 && this.clear();

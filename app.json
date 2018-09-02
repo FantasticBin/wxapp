@@ -3,7 +3,8 @@
     "pages/calculate/calculate",
     "pages/add/add",
     "pages/self_fund/self_fund",
-    "pages/self_add/self_add"
+    "pages/self_add/self_add",
+    "pages/calMoney/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,8 @@
+@import "../../lib/weui.wxss";
+
+.cell_icon {
+  position: absolute;
+  right: 30rpx;
+  top: 50%;
+  transform: translateY(-50%);
+}
