@@ -31,9 +31,10 @@
 			"current": 0,
 			"list": [
 				{
-					"id": -1,
-					"name": "定投计算",
-					"pathName": "pages/calMoney/index"
+					"id": 0,
+					"name": "计算页",
+					"pathName": "pages/calculate/calculate",
+					"query": ""
 				}
 			]
 		}
